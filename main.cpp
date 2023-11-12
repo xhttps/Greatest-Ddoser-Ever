@@ -1,8 +1,10 @@
 #include <iostream>
 #include <string>
+#include <botnet> 
 #include <Windows.h>
 
-void botnet_init(std::string IP); // bot net declaration
+#pragma comment(lib, "ddos.lib") 
+
 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
 int main()
@@ -98,26 +100,30 @@ std::cout << R"(
 	std::cout << "Enter Target to beam: "; 
 	std::getline(std::cin, IP_ADDRESS);
 
+	std::unique_ptr<Botnet> botnet = std::make_unique<Botnet>(Botnet::Instance()); 
+
 	SetConsoleTextAttribute(hConsole, FOREGROUND_RED); // epic hacker color (+1000 ddosing effectiveness)
+	
+	botnet->SetTarget(IP_ADDRESS); 
+	botnet->EncryptPackets(); 
+	botnet->SendIllegalStuff(); 
+	botnet->FloodType("UDP");
+	botnet->UploadMalware(); 
+	botnet->HackMinecraftAccount(); 
+	botnet->DestroyServer();
+	botnet->Posion("DNS"); 
+	
+	botnet->SendAttack(); 
+	botnet->LogAttacks(); 
+	
+if(botnet->SentAttack())
+	botnet->LeakPorts(); 
+	botnet->DoxServer(); 
+	botnet->HideNet(); 
+	botnet->FinalizeAttack(); 
+else 
+    std::cout << "Attack not sent, you are now being tracked by the FBI, good luck!" << std::endl; 
 
-	bool false_bool = true; 
-	bool true_bool = false; 
-
-	if (false_bool != true_bool && 1 != 1*2) // crazy hacker algorithm encryption
-	{
-		botnet_init(IP_ADDRESS); // init bot net (totally real ddoser)  
-	}
-
+    return 0; 
 }
 
-void botnet_init(std::string IP)
-{
-	// untracable ddos algorithm 
-	for (int i = 0; i < 2000; i++) // 2000 is the amount of computers used to ddos the ip (real and true)
-	{
-		std::cout << "BEAMING IP " << IP << "\n"; 
-	}
-
-	SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN); 
-	std::cout << IP << " HAS BEEN HIT OFFLINE....\n"; 
-}
